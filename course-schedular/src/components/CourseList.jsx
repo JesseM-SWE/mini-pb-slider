@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React from 'react'
+import { useState } from "react";
 import UseFetch from "../hooks/useFetch.js";
 import CourseCard from "./CourseCard.jsx";
 
@@ -7,7 +8,19 @@ function CourseList(props) {
 
     const { data: courses, loading, error } = UseFetch();
     // array that stors the id of the course completed
-    const [completed, setCompleted] = React.useState([]);
+    const [completed, setCompleted] = useState(()=>{
+        const saved = localStorage.getItem("completedCourses");
+        if(saved){
+            try{
+                // check if the saved value is an array if not return an empty array
+                const pasrsed = JSON.parse(saved);
+                return Array.isArray(pasrsed) ? pasrsed : [];
+            }catch(e){
+                return [];
+            }
+        }
+        return [];
+    });
 
     const [filter, setFilter] = React.useState("all");
 
@@ -34,6 +47,7 @@ function CourseList(props) {
         // all courses
        return true;
     })
+
 
     console.log(completedCount,availableCount,lockedCount);
 
@@ -65,17 +79,21 @@ function CourseList(props) {
             return [...prev,course.id];
         })
    }
+   function handleSave(){
+       localStorage.setItem("completedCourses",JSON.stringify(completed));
+   }
 
     return (
         <>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
+            <div className="btn-group mb-3" role="group">
+                <button type={"button"} className={`btn ${filter ==='all' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("all")}>All Courses</button>
+                <button type={"button"} className={`btn ${filter ==='completed' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("completed")}>Completed ({completedCount})</button>
+                <button type={"button"} className={`btn ${filter ==='remaining' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("remaining")}>Remaining ({courses.length-completedCount})</button>
+                <button type={"button"} className="btn btn-success" onClick={handleSave}>Save</button>
+            </div>
             <div className="row g-3">
-                <div className="btn-group mb-3" role="group">
-                    <button type={"button"} className={`btn ${filter ==='all' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("all")}>All Courses</button>
-                    <button type={"button"} className={`btn ${filter ==='completed' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("completed")}>Completed ({completedCount})</button>
-                    <button type={"button"} className={`btn ${filter ==='remaining' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("remaining")}>Remaining ({availableCount})</button>
-                </div>
                 {filterCourses.map((course) => (
                     <div key={course.id} className="col-12 col-md-6 col-lg-4">
                         <CourseCard
