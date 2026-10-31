@@ -9,6 +9,8 @@ function CourseList(props) {
     // array that stors the id of the course completed
     const [completed, setCompleted] = React.useState([]);
 
+    const [filter, setFilter] = React.useState("all");
+
 // completed is an array of course ids the student has marked done
 // course.prerequisites is an array of ids that must be completed first
 
@@ -16,6 +18,24 @@ function CourseList(props) {
     const isAvailable = (course, completed) => {
         return course.prerequisites.every(prereqId => completed.includes(String(prereqId)))
     }
+    const completedCount = courses.filter(course => completed.includes(String(course.id))).length;
+    const availableCount = courses.filter(course => !completed.includes(String(course.id)) && isAvailable(course,completed)).length;
+    const lockedCount = courses.filter(course => !completed.includes(String(course.id)) && !isAvailable(course,completed)).length;
+
+    const filterCourses = courses.filter(course => {
+        // onlu completed courses
+        if(filter === "completed"){
+            return completed.includes(String(course.id));
+        }
+        // the left over
+        if(filter === "remaining"){
+            return !completed.includes(String(course.id));
+        }
+        // all courses
+       return true;
+    })
+
+    console.log(completedCount,availableCount,lockedCount);
 
    function handleComplete(course) {
         setCompleted((prev)=>{
@@ -46,13 +66,17 @@ function CourseList(props) {
         })
    }
 
-
     return (
         <>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             <div className="row g-3">
-                {courses.map((course) => (
+                <div className="btn-group mb-3" role="group">
+                    <button type={"button"} className={`btn ${filter ==='all' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("all")}>All Courses</button>
+                    <button type={"button"} className={`btn ${filter ==='completed' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("completed")}>Completed ({completedCount})</button>
+                    <button type={"button"} className={`btn ${filter ==='remaining' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("remaining")}>Remaining ({availableCount})</button>
+                </div>
+                {filterCourses.map((course) => (
                     <div key={course.id} className="col-12 col-md-6 col-lg-4">
                         <CourseCard
                             course={course}
