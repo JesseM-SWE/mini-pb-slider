@@ -1,5 +1,4 @@
 import {useState,useEffect} from "react";
-import dotenv from "dotenv";
 
 function UseFetch() {
     const [loading, setLoading] = useState(true);
@@ -7,34 +6,29 @@ function UseFetch() {
     const [error, setError] = useState(null);
 
     const url = import.meta.env.VITE_API_BASE_URL || "http://localhost:3333/courses";
-    try{
-        setLoading(true);
-        setError(null);
+    useEffect(() => {
+            setLoading(true);
+            setError(null);
 
-        useEffect(() => {
+            fetch(url)
+                .then(res=>{
+                    if(!res.ok){
+                        throw new Error('Error fetching data');
+                    }
+                    return res.json();
+                })
+                .then(data=>{
+                    setData(data);
+                    setLoading(false);
+                })
+                .catch(err=>{
+                    setError(err.message);
+                })
+                .finally(()=>{
+                    setLoading(false);
+                })
 
-        })
-
-        fetch(url)
-            .then(res =>{
-                if(!res.ok){
-                    throw new Error("Failed to fetch data");
-                }
-                setLoading(false);
-                return res.json();
-            },[url])
-            .then(data => setData(data))
-            setError(false);
-
-    }catch(err){
-        setError(err.message);
-        setLoading(true);
-
-    } finally {
-
-    }
-
-
+    }, [url]);
     return { data, loading, error };
 }
 
