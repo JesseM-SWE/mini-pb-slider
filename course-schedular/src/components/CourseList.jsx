@@ -7,7 +7,7 @@ function CourseList(props) {
 
     const { data: courses, loading, error } = UseFetch();
     console.log(courses);
-
+//jesse is fat cheese slider
     if(loading) {
         return <p>Loading...</p>;
     }
