@@ -1,12 +1,13 @@
 import React from 'react';
 
-function CourseCard({course,courses}) {
+function CourseCard({course,courses,handleComplete, isCompleted, isAvailable}) {
     const prereqs = course.prerequisites || [];
 
     const prereqCourses = prereqs.map((id) => {
         const c = courses.find((c) => c.id == id);
         return c ? c.number : "";
     });
+
 
     return (
         <div className="card mb-3">
@@ -29,6 +30,9 @@ function CourseCard({course,courses}) {
                             className="form-check-input"
                             type="checkbox"
                             id={`complete-${course.id}`}
+                            checked={isCompleted}
+                            disabled={!isCompleted &&!isAvailable}
+                            onChange={() => handleComplete(course)}
                         />
                         <label
                             className="form-check-label"
