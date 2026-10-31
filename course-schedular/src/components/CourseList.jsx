@@ -26,7 +26,7 @@ function CourseList(props) {
                         <div className="card-text">
                             <p>{`${c.credit_card} credits`}</p>
                             <p>{c.description}</p>
-                            <p>{`Prerequisites: ${c.prerequisites == "" ? 'none' : c.prerequisites}`}</p>
+                            <p>{`Prerequisites: ${c.prerequisites === "" ? 'none' : c.prerequisites}`}</p>
                         </div>
 
                         <div className="card-footer">
