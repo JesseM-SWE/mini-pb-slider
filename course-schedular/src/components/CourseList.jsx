@@ -51,15 +51,21 @@ function CourseList(props) {
         <>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
-            {courses.map((course) => (
-                <CourseCard key={course.id}
+            <div className="row g-3">
+                {courses.map((course) => (
+                    <div key={course.id} className="col-12 col-md-6 col-lg-4">
+                        <CourseCard
                             course={course}
                             courses={courses}
                             isCompleted = {completed.includes(course.id)}
                             isAvailable = {isAvailable(course,completed)}
                             handleComplete = {handleComplete}
-                />
-            ))}
+                        />
+                    </div>
+
+                ))}
+            </div>
+
         </>
     );
 }
