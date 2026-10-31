@@ -1,14 +1,18 @@
 
 import React from 'react';
 import UseFetch from "../hooks/useFetch.js";
+import CourseCard from "./CourseCard.jsx";
 
 function CourseList(props) {
 
-    const courses = UseFetch();
+    const { data: courses, loading, error } = UseFetch();
     console.log(courses);
-    function custom() {
-
-
+//jesse is fat cheese slider
+    if(loading) {
+        return <p>Loading...</p>;
+    }
+    if(error) {
+        return <p> Erorr: {error}</p>
     }
 
     return (
