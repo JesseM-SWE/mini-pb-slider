@@ -7,15 +7,42 @@ function CourseList(props) {
 
     const { data: courses, loading, error } = UseFetch();
     console.log(courses);
+
+
     return (
         <>
             <h2>Course List</h2>
-            {loading && <p>Loading...</p>}
+            {courses && courses.map((c) => (
+                <div key={c.id} className="card mb-3">
+                    <div className="card-header">
+                        {c.number}
+                    </div>
 
-            {error && <p>Error: {error}</p>}
+                    <div className="card-body">
+                        <h1 className="card-title">{c.title}</h1>
 
-            {!loading && !error && courses.map((c)=>(
-                <CourseCard key={c.id} course={c} courses={courses}/>
+                        <div className="card-text">
+                            <p>{`${c.credit_card} credits`}</p>
+                            <p>{c.description}</p>
+                            <p>{`Prerequisites: ${c.prerequisites == "" ? 'none' : c.prerequisites}`}</p>
+                        </div>
+
+                        <div className="card-footer">
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id={`complete-${c.id}`}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor={`complete-${c.id}`}
+                                >
+                                    Complete</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             ))}
         </>
     );
