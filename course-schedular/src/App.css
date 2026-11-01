@@ -1,0 +1,65 @@
+body {
+    background-color: #f4f5f7;
+}
+
+/* Page title */
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Progress summary */
+.progress-summary {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+/* Progress bar */
+.progress {
+    height: 14px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background-color: #198754;
+}
+
+/* Course cards */
+.course-card {
+    height: 100%;
+    border-radius: 6px;
+    background-color: white;
+    border: 2px solid #0d6efd;
+}
+
+/* Completed cards */
+.course-card.completed {
+    border-color: #198754;
+    background-color: #eaf5ee;
+}
+
+/* Locked cards */
+.course-card.locked {
+    border-color: #9aa1a6;
+    background-color: #f1f2f3;
+    color: #777;
+}
+
+/* Filter buttons */
+.btn-group {
+    margin-bottom: 20px;
+}
+
+/* Save button */
+.btn-success {
+    background-color: #198754;
+}
+
+/* Course spacing */
+.row {
+    row-gap: 16px;
+}

@@ -2,30 +2,38 @@ import React from 'react';
 
 function AboutPage() {
     return (
-        <div className="card" >
-            <div className="card-body">
-                <h5 className="card-title">About</h5>
-                <p className="card-text">The Aurora CS Course Scheduler shows the CS Developer Track catalog, tracks which courses you have completed, and shows which courses you are eligible to take next.</p>
-                <div>
-                    <h5 className="card-title">Author (s)</h5>
-                    <p className="card-text">
-                        Partner One & Partner Two
-                    </p>
-                </div>
-                <div>
-                    <h5 className="card-title">Date</h5>
-                    <p className="card-text">
-                        Sunday, October 11, 2026
-                    </p>
-                </div>
-                <div>
-                    <h5 className="card-title">Version</h5>
-                    <p className="card-text">
-                        1.0.0
-                    </p>
+        <main className="container-fluid bg-light min-vh-100 py-4">
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-8 col-lg-6">
+                    <section className="card shadow-sm">
+                        <div className="card-body">
+                            <h5 className="card-title">About</h5>
+
+                            <p className="card-text">
+                                The Aurora CS Course Scheduler shows the CS Developer Track
+                                catalog, tracks which courses you have completed, and shows
+                                which courses you are eligible to take next.
+                            </p>
+
+                            <div className="row mb-2">
+                                <div className="col-sm-4 fw-semibold">Author(s)</div>
+                                <div className="col-sm-8">Joshua &amp; Jesse</div>
+                            </div>
+
+                            <div className="row mb-2">
+                                <div className="col-sm-4 fw-semibold">Date</div>
+                                <div className="col-sm-8">Sunday, October 11, 2026</div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-sm-4 fw-semibold">Version</div>
+                                <div className="col-sm-8">1.0.0</div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </div>
+        </main>
     );
 }
 

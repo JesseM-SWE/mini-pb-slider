@@ -89,7 +89,7 @@ function CourseList(props) {
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             <div className="justify-content-start mb-3">
-                <ProgressSummary completedCount={completedCount} availableCount={availableCount} lockedCount = {lockedCount}/>
+                <ProgressSummary completedCount={completedCount} availableCount={availableCount} lockedCount = {lockedCount} len = {courses.length}/>
             </div>
 
             <div className="btn-group mb-3" role="group">

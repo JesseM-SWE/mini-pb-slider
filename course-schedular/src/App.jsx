@@ -12,8 +12,6 @@ function App() {
   return (
     <>
         <NavBar />
-      <h1>Course Schedular</h1>
-
         <Routes>
             <Route path="/" element={<CourseList />} />
             <Route path="/home" element={<HomePage />} />

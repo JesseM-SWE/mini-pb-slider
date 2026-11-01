@@ -1,35 +1,43 @@
 import React from 'react';
 
-const ProgressSummary = ({completedCount,availableCount,lockedCount}) => {
+const ProgressSummary = ({completedCount, availableCount, lockedCount,len}) => {
     const temp = (completedCount / 10) * 100;
-
-
-
 
     return (
         <div>
+            <h2>CS Developer Track</h2>
 
-            <h1>CS Developer Track {temp}</h1>
-            <div>
+            <div className="bg-white border rounded shadow-sm p-3">
+
                 <div className="row">
-                    <p><span style={{
-                        fontWeight: 'bold',
-                        color: 'green'
-                    }}>{completedCount}</span> of {10} course
-                        completed <span style={{
-                            fontWeight: 'bold',
-                            color: 'blue'
-                        }}>{availableCount}</span> available <span style={{
-                            fontWeight: 'bold',
-                            color: 'grey'
-                        }}>{lockedCount}</span> Locked</p>
+                    <p>
+                        <span style={{fontWeight: 'bold', color: 'green'}}>
+                            {completedCount}
+                        </span> of {len} courses completed
+
+                        <span style={{fontWeight: 'bold', color: 'blue', marginLeft: '15px'}}>
+                            {availableCount}
+                        </span> available
+
+                        <span style={{fontWeight: 'bold', color: 'grey', marginLeft: '15px'}}>
+                            {lockedCount}
+                        </span> locked
+                    </p>
                 </div>
-                <div className="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25"
-                     aria-valuemin="0" aria-valuemax="100">
-                    <div className="progress-bar"  style={{
-                        width: `${temp}%`,
-                        backgroundColor: 'green'
-                    }}>{temp}%</div>
+
+                <div className="progress" role="progressbar"
+                     aria-valuenow={temp}
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+
+                    <div className="progress-bar"
+                         style={{
+                             width: `${temp}%`,
+                             backgroundColor: 'green'
+                         }}>
+                        {temp}%
+                    </div>
+
                 </div>
             </div>
         </div>
