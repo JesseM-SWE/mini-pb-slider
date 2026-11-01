@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from "react";
 import UseFetch from "../hooks/useFetch.js";
 import CourseCard from "./CourseCard.jsx";
+import ProgressSummary from "./ProgressSummary.jsx";
 
 function CourseList(props) {
 
@@ -87,6 +88,10 @@ function CourseList(props) {
         <>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
+            <div className="justify-content-start mb-3">
+                <ProgressSummary completedCount={completedCount} availableCount={availableCount} lockedCount = {lockedCount}/>
+            </div>
+
             <div className="btn-group mb-3" role="group">
                 <button type={"button"} className={`btn ${filter ==='all' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("all")}>All Courses</button>
                 <button type={"button"} className={`btn ${filter ==='completed' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("completed")}>Completed ({completedCount})</button>

@@ -4,7 +4,7 @@ function CourseCard({course,courses,handleComplete, isCompleted, isAvailable}) {
     const prereqs = course.prerequisites || [];
 
     const prereqCourses = prereqs.map((id) => {
-        const c = courses.find((c) => c.id == id);
+        const c = courses.find((c) => c.id === id);
         return c ? c.number : "";
     });
 
