@@ -1,26 +1,57 @@
-Course Scheduler
-This is a school project called Course Scheduler.
+# Steps to Run This Project
 
-The authors of this project are Josh and Jesse.
+### 1. Download or Clone the Project
 
-We used a template provided by our teacher, Mr. Lash.
+- Download the ZIP file or clone the repository from GitHub.
+- Open your IDE (WebStorm) and open the project.
 
-How to Run This Project on Your Own
-Follow these steps to get the project up and running:
+### 2. Start the Database
 
-Download the code or clone the repository from GitHub.
-Run npm install to install the dependencies.
-Start the database server.
-To start the database server, make sure your current directory is src, then run the following command:
-npx json-server --watch db/db.json --port xxxx
+- Open a terminal in your IDE.
+- Navigate to the project directory:
 
-Once the database server is running, start the project using one of the default scripts:
+```
+cd course-schedular
+```
+
+- Start the database server by running:
+
+```
+npx json-server --watch db/db.json --port 3333
+```
+
+### 3. Set Up the Web Application
+
+- Open a **new terminal** in your IDE.
+- Make sure you are in the project directory:
+
+```
+cd course-schedular
+```
+
+### 4. Create the Environment File
+
+- Create a file named `.env` in the project's root directory.
+- Add the following line to the `.env` file:
+
+```
+VITE_API_BASE_URL=http://localhost:3333/
+```
+
+### 5. Install Dependencies
+
+Run the following command to install the required packages:
+
+```
+npm install
+```
+
+### 6. Run the Web Application
+
+Start the dev server by running:
+
+```
 npm run dev
+```
 
-You're all done! The project should now be running.
-Side Note: API Configuration
-In hooks/useFetch, where we fetch the data, the application uses an environment variable to determine the API URL.
-
-If no environment variable is found, the application will default to the port we configured: 3333.
-
-You can change this default port or add your own environment (.env) file to configure the API URL.
+Follow the local URL displayed in your terminal to open it in your browser.
