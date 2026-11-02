@@ -11,11 +11,12 @@ function CourseCard({course,courses,handleComplete, isCompleted, isAvailable}) {
     const status = isCompleted ? "Completed" : isAvailable ? "Available" : "Locked";
     const colorStatus = isCompleted ? "bg-success" : isAvailable ? "bg-primary" : "bg-secondary";
     const boarderboxColor = isCompleted ? "border-success" : isAvailable ? "border-primary" : "border-secondary";
+    const backgroundColor = isCompleted ? "bg-success-subtle": null;
 
 
     return (
 
-            <div className={`card h-100 text-start ${boarderboxColor}`}>
+            <div className={`card h-100 text-start ${boarderboxColor} ${backgroundColor}`}>
                 <div className="card-header d-flex justify-content-between">
 
                     <strong> {course.number} </strong>

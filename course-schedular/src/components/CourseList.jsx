@@ -24,6 +24,7 @@ function CourseList(props) {
     });
 
     const [filter, setFilter] = React.useState("all");
+    const [msg, setMsg] = React.useState("");
 
 // completed is an array of course ids the student has marked done
 // course.prerequisites is an array of ids that must be completed first
@@ -51,6 +52,8 @@ function CourseList(props) {
 
 
     console.log(completedCount,availableCount,lockedCount);
+
+
 
    function handleComplete(course) {
         setCompleted((prev)=>{
@@ -82,6 +85,7 @@ function CourseList(props) {
    }
    function handleSave(){
        localStorage.setItem("completedCourses",JSON.stringify(completed));
+       setMsg("Progress Saved");
    }
 
     return (
@@ -92,12 +96,22 @@ function CourseList(props) {
                 <ProgressSummary completedCount={completedCount} availableCount={availableCount} lockedCount = {lockedCount} len = {courses.length}/>
             </div>
 
-            <div className="btn-group mb-3" role="group">
-                <button type={"button"} className={`btn ${filter ==='all' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("all")}>All Courses</button>
-                <button type={"button"} className={`btn ${filter ==='completed' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("completed")}>Completed ({completedCount})</button>
-                <button type={"button"} className={`btn ${filter ==='remaining' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("remaining")}>Remaining ({courses.length-completedCount})</button>
-                <button type={"button"} className="btn btn-success" onClick={handleSave}>Save</button>
-            </div>
+            <div className={'d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2'}>
+
+                    <div className="btn-group " role="group">
+                        <button type={"button"} className={`btn ${filter ==='all' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("all")}>All Courses</button>
+                        <button type={"button"} className={`btn ${filter ==='completed' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("completed")}>Completed ({completedCount})</button>
+                        <button type={"button"} className={`btn ${filter ==='remaining' ?" btn-dark":"btn-outline-dark"}`} onClick={()=>setFilter("remaining")}>Remaining ({courses.length-completedCount})</button>
+                    </div>
+                <div className="d-flex align-items-center gap-3" role="group">
+                    {msg && (<span className = 'text-success' role ="status">{msg}</span>)}
+                    <button type={"button"} className="btn btn-success" onClick={handleSave}>Save</button>
+                </div>
+
+                </div>
+
+
+
             <div className="row g-3">
                 {filterCourses.map((course) => (
                     <div key={course.id} className="col-12 col-md-6 col-lg-4">
