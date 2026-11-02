@@ -22,7 +22,11 @@ function AboutPage() {
 
                             <div className="row mb-2">
                                 <div className="col-sm-4 fw-semibold">Date</div>
-                                <div className="col-sm-8">Sunday, October 11, 2026</div>
+                                <div className="col-sm-8">{new Date().toLocaleDateString("en-US",{
+                                    year:"numeric",
+                                    month:"long",
+                                    day:"numeric"
+                                })}</div>
                             </div>
 
                             <div className="row">

@@ -56,6 +56,7 @@ function CourseList(props) {
 
 
    function handleComplete(course) {
+       setMsg("");
         setCompleted((prev)=>{
            // already completed , uncheck it, revemove it from completed
             if(prev.includes(course.id)){

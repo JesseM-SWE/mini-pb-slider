@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProgressSummary = ({completedCount, availableCount, lockedCount,len}) => {
-    const temp = (completedCount / 10) * 100;
+    const temp = len > 0 ? (completedCount / len) * 100 : 0;
 
     return (
         <div>

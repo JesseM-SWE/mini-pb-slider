@@ -12,7 +12,7 @@ function NavBar() {
             <ul className="navbar-nav flex-row ms-auto gap-3">
 
                 <li className="nav-item">
-                    <Link to="/home" className="nav-link">
+                    <Link to="/" className="nav-link">
                         Home
                     </Link>
                 </li>
