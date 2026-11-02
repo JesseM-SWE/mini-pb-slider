@@ -29,16 +29,7 @@ npx json-server --watch db/db.json --port 3333
 cd course-schedular
 ```
 
-### 4. Configure the Environment File (Optional)
 
-**You can skip this step if you are comfortable using the default port.** Follow these instructions if you want to configure the API URL manually.
-
-- Create a file named `.env` in the project's root directory.
-- Add the following line:
-
-```env
-VITE_API_BASE_URL=http://localhost:3333/
-```
 
 ### 5. Install Dependencies
 
