@@ -5,7 +5,7 @@ function UseFetch() {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
-    const url = import.meta.env.VITE_API_BASE_URL || "http://localhost:3333/courses";
+    const url = import.meta.env.VITE_API_BASE_URL + "courses";
     useEffect(() => {
             setLoading(true);
             setError(null);
