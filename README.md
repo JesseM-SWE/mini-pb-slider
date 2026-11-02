@@ -55,3 +55,12 @@ npm run dev
 ```
 
 Follow the local URL displayed in your terminal to open it in your browser.
+
+
+
+
+## Authors
+
+This project was created by **Josh and Jesse**.
+
+We used a project template provided by our teacher, **Mr. Lash**.
