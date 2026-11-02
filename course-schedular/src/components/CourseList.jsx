@@ -67,7 +67,7 @@ function CourseList(props) {
                 while(change){
 
                     const val = newCompleted.filter((id)=>{
-                        const course = courses.find((c)=>String(c.id) === id);
+                        const course = courses.find((c)=>String(c.id) === String(id));
 
                         return course && isAvailable(course,newCompleted);
                     })
