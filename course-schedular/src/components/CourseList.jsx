@@ -8,26 +8,13 @@ import ProgressSummary from "./ProgressSummary.jsx";
 function CourseList(props) {
 
     const { data: courses, loading, error } = UseFetch();
-    // array that stors the id of the course completed
     const [completed, setCompleted] = useState(()=>{
         const saved = localStorage.getItem("completedCourses");
-        if(saved){
-            try{
-                // check if the saved value is an array if not return an empty array
-                const pasrsed = JSON.parse(saved);
-                return Array.isArray(pasrsed) ? pasrsed : [];
-            }catch(e){
-                return [];
-            }
-        }
-        return [];
+       return saved ? JSON.parse(saved) : [];
     });
 
     const [filter, setFilter] = React.useState("all");
     const [msg, setMsg] = React.useState("");
-
-// completed is an array of course ids the student has marked done
-// course.prerequisites is an array of ids that must be completed first
 
 
     const isAvailable = (course, completed) => {
@@ -38,15 +25,14 @@ function CourseList(props) {
     const lockedCount = courses.filter(course => !completed.includes(String(course.id)) && !isAvailable(course,completed)).length;
 
     const filterCourses = courses.filter(course => {
-        // onlu completed courses
+
         if(filter === "completed"){
             return completed.includes(String(course.id));
         }
-        // the left over
+
         if(filter === "remaining"){
             return !completed.includes(String(course.id));
         }
-        // all courses
        return true;
     })
 
@@ -58,9 +44,7 @@ function CourseList(props) {
    function handleComplete(course) {
        setMsg("");
         setCompleted((prev)=>{
-           // already completed , uncheck it, revemove it from completed
             if(prev.includes(course.id)){
-                // find the id and remove it from the completed
                 let newCompleted = prev.filter((id)=>id!== course.id);
 
                 let change = true;
@@ -76,11 +60,9 @@ function CourseList(props) {
                 }
                 return newCompleted;
             }
-            // locked, do nothing
             if(!isAvailable(course,prev)){
                 return prev;
             }
-            // mark it as completed and add it to completed
             return [...prev,course.id];
         })
    }
